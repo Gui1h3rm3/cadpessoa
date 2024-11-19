@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Pessoa } from 'src/app/interfaces/pessoa';
 import { CadPessoaService } from 'src/app/servicos/cad-pessoa/cad-pessoa.service';
@@ -6,6 +6,8 @@ import { SaveEditComponent } from '../save-edit/save-edit.component';
 import { Resposta } from 'src/app/interfaces/resposta';
 import { FormControl } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MesAnoDatepickerComponent } from 'src/app/componentes/mes-ano-datepicker/mes-ano-datepicker.component';
+import moment from 'moment';
 
 @Component({
   selector: 'app-cad-pessoa',
@@ -17,12 +19,19 @@ export class CadPessoaComponent implements OnInit {
   filtrosHabilitados: boolean = false;
   pessoas: Pessoa[] = [];
 
+  @ViewChild(MesAnoDatepickerComponent)
+  mesAnoDatePickerComponent!: MesAnoDatepickerComponent;
+
   constructor(private cadPessoaService: CadPessoaService, 
               private matDialog: MatDialog,) {    
   }
 
   ngOnInit(): void {
     this.carregaListaUsuarios();
+  }
+
+  habilitarDesabilitarDatepicker(): void {
+    this.mesAnoDatePickerComponent.habilitarDesabilitarComponente();
   }
 
   salvarOuEditarPessoa(acao: string, id?: number): void {
@@ -51,7 +60,12 @@ export class CadPessoaComponent implements OnInit {
   }
 
   buscarPessoaMesEAnoReceiver(formControl: FormControl): void {
-    console.log(formControl.value);
+    if(formControl.value) {
+      let mesEAno: Date = moment(formControl.value).toDate();
+      this.cadPessoaService.buscarPessoaPorMesEAno(mesEAno).subscribe((resposta) => {
+        this.criaListaUsuario(resposta)
+      });
+    }
   }
 
   private carregaListaUsuarios(): void {

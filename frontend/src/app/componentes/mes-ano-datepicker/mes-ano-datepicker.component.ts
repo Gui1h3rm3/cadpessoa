@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {provideMomentDateAdapter} from '@angular/material-moment-adapter';
 import {MatDatepicker, MatDatepickerModule} from '@angular/material/datepicker';
@@ -40,7 +40,7 @@ export const MY_FORMATS = {
   changeDetection: ChangeDetectionStrategy.OnPush,  
 })
 export class MesAnoDatepickerComponent implements AfterViewInit {
-  
+
   readonly date = new FormControl(moment());
 
   @Input()
@@ -50,9 +50,19 @@ export class MesAnoDatepickerComponent implements AfterViewInit {
   buscarPessoaMesEAnoEmitter: EventEmitter<FormControl> = new EventEmitter();
 
   ngAfterViewInit(): void {
+    this.date.disable();
+    this.date.setValue(null);
     this.date.valueChanges.subscribe(() => {
       this.buscarPessoaMesEAnoEmitter.emit(this.date);
     })
+  }
+
+  habilitarDesabilitarComponente(): void {
+    if(this.desabilitarInput) {
+      this.date.enable();
+    } else {
+      this.date.disable();
+    }
   }
 
   setMonthAndYear(normalizedMonthAndYear: Moment, datepicker: MatDatepicker<Moment>) {

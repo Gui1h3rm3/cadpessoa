@@ -31,6 +31,10 @@ public class PessoaService {
 		return this.pessoaRepository.filterByNascimento(data, pageable);
 	}
 	
+	public Page<Pessoa> filterByMonthAndYear(Long mes, Long ano, Pageable pageable) {
+		return this.pessoaRepository.filterByMonthAndYear(mes, ano, pageable);
+	}
+	
 	public PessoaOutputDTO getById(Long id) throws CadPessoaUserException {
 
 		Optional<Pessoa> optPessoa = this.pessoaRepository.findById(id);

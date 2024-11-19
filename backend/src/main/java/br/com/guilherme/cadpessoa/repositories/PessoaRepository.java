@@ -18,6 +18,9 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 	@Query("SELECT p FROM Pessoa p WHERE p.nascimento = :data ORDER BY p.nome ASC")
 	public Page<Pessoa> filterByNascimento(LocalDate data, Pageable pageable);
 	
+	@Query("SELECT p FROM Pessoa p WHERE MONTH(p.nascimento) = :mes AND YEAR(p.nascimento) = :ano ORDER BY p.nome ASC")
+	public Page<Pessoa> filterByMonthAndYear(Long mes, Long ano, Pageable pageable);
+	
 	default Pessoa create(String nome, String telefone, LocalDate nascimento, String email) throws CadPessoaUserException {
 		
 		Pessoa pessoa = new Pessoa();

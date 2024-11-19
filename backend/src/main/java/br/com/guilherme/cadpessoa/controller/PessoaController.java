@@ -44,6 +44,11 @@ public class PessoaController {
 														pageable);
 	}
 	
+	@GetMapping("/filterByMonthAndYear")
+	public Page<?> filterByMonthAndYear(@RequestParam("mes") Long mes, @RequestParam("ano") Long ano, Pageable pageable) {
+		return this.pessoaService.filterByMonthAndYear(mes, ano, pageable);
+	}
+	
 	@GetMapping("/getById/{id}")
 	public ResponseEntity<?> getById(@PathVariable("id") @Nonnull Long id) throws CadPessoaUserException {
 		PessoaOutputDTO pessoaOutputDto = this.pessoaService.getById(id);

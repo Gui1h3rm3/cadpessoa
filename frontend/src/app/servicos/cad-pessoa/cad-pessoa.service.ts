@@ -43,6 +43,14 @@ export class CadPessoaService {
     const url = `${this.cadPessoaUrl}/filterByName?nome=${nome}`;
     return this.httpClient.get<Resposta>(url, {headers});
   }
+
+  buscarPessoaPorMesEAno(mesEAno: Date): Observable<Resposta> {
+    const headers: HttpHeaders = this.getHeaders();
+    const mes = mesEAno.getMonth() + 1; 
+    const ano = mesEAno.getFullYear();
+    const url = `${this.cadPessoaUrl}/filterByMonthAndYear?mes=${mes}&ano=${ano}`;
+    return this.httpClient.get<Resposta>(url, {headers});
+  }
   
   salvarPessoa(pessoa: Pessoa): Observable<Pessoa> {
     const headers: HttpHeaders = this.getHeaders();
