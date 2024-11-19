@@ -1,0 +1,6 @@
+<input type="text" 
+    id="busca-pessoa-nome" 
+    placeholder="Busque uma pessoa pelo nome"
+    [(ngModel)]="nome"
+    (ngModelChange)="buscarPessoaNome($event)" 
+    [disabled]="desabilitarInput"/>

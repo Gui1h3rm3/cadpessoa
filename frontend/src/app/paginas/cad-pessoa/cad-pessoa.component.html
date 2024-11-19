@@ -1,0 +1,61 @@
+<div class="container">
+    <div>
+        <fieldset>
+            <legend>
+                <mat-checkbox id="filtros" 
+                    type="checkbox" 
+                    [(ngModel)]="filtrosHabilitados">
+                </mat-checkbox>
+                <label for="filtros">Filtros de busca:</label>
+            </legend>
+
+            <!-- Componente que realiza a busca pelo nome da pessoa -->
+            <span>
+                <app-busca-pessoa
+                    [desabilitarInput]="!filtrosHabilitados"
+                    (buscarPessoaNomeEmitter)="buscarPessoaNomeReceiver($event)">
+                </app-busca-pessoa>
+            </span>
+
+            <!-- Componente para busca através de mês e ano -->
+            <span>
+                <app-mes-ano-datepicker 
+                    [desabilitarInput]="!filtrosHabilitados"
+                    (buscarPessoaMesEAnoEmitter)="buscarPessoaMesEAnoReceiver($event)">
+                </app-mes-ano-datepicker>
+            </span>
+        </fieldset>
+    </div>
+
+    <div *ngFor="let pessoa of pessoas">
+        <table border="0">
+            <thead>
+                <tr>
+                    <td>Nome</td>
+                    <td>Telefone</td>
+                    <td>Nascimento</td>
+                    <td>Email</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td [className]="'no-display'">{{ pessoa.id }}</td>
+                    <td>{{ pessoa.nome }}</td>
+                    <td>{{ pessoa.telefone }}</td>
+                    <td>{{ pessoa.nascimento }}</td>
+                    <td>{{ pessoa.email }}</td>
+                    <button (click)="salvarOuEditarPessoa('EDIT', pessoa.id)">Editar</button>
+                    <button (click)="excluirPessoa(pessoa.id ?? 0)">Excluir</button>
+                </tr>
+            </tbody>
+        </table>            
+    </div>
+    <div>
+        <button (click)="salvarOuEditarPessoa('SAVE')">
+            Novo cadastro
+        </button>
+        <button>
+            Buscar pessoa
+        </button>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+<h3>{{ acao }}</h3>
+<app-pessoa-form [id]="id" 
+    (salvarEmitter)="salvarPessoaReceiver($event)" 
+    (cancelarEmitter)="closeDialogReceiver()">
+</app-pessoa-form>

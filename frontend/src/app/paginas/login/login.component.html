@@ -1,0 +1,24 @@
+<h2>Login</h2>
+<form (ngSubmit)="submit()" [formGroup]="loginForm" #form="ngForm">
+    <div class="form-group">
+        <label for="usuario">Usuário:</label>
+        <input type="text"
+                placeholder="insira o usuário"
+                formControlName="username"
+                required>
+        <div *ngIf="username?.invalid && form.submitted">
+            <p>Nome de usuário é obrigatório!</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="senha">Senha:</label>
+        <input type="text"
+                placeholder="insira a senha"
+                formControlName="password"
+                required>
+        <div *ngIf="password?.invalid && form.submitted">
+            <p>Senha é obrigatória!</p>
+        </div>
+    </div>
+    <input type="submit" value="Login">
+</form>

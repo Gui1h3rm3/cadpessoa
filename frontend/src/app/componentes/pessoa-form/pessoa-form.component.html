@@ -1,0 +1,50 @@
+<form (ngSubmit)="salvar()" [formGroup]="pessoaForm" #form="ngForm">
+
+    <!-- id -->
+    <input type="hidden" formControlName="id"/>
+
+    <!-- Nome -->
+    <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" 
+                formControlName="nome"
+                placeholder="Insira um nome" 
+                required/>
+        <div *ngIf="nome?.invalid && form.submitted">
+            <p>o campo nome é obrigatório!</p>
+        </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" 
+                formControlName="email" 
+                placeholder="Insira um email"/>
+    </div>
+
+    <!-- Nascimento -->
+    <div class="form-group">
+        <label for="nascimento">Nascimento:</label>
+        <input type="date" 
+                formControlName="nascimento" 
+                placeholder="Insira uma data de nascimento" 
+                required/>
+        <div *ngIf="nascimento?.invalid && form.submitted">
+            <p>O campo nascimento é obrigatório!</p>
+        </div>
+    </div>
+
+    <!-- Telefone -->
+    <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        <input type="tel" 
+                formControlName="telefone" 
+                placeholder="Insira um número de telefone"/>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Salvar"/>
+        <input type="button" value="Cancelar" (click)="cancelar()"/>
+    </div>
+</form>
