@@ -5,9 +5,9 @@ import { CadPessoaService } from 'src/app/servicos/cad-pessoa/cad-pessoa.service
 import { SaveEditComponent } from '../save-edit/save-edit.component';
 import { Resposta } from 'src/app/interfaces/resposta';
 import { FormControl } from '@angular/forms';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MesAnoDatepickerComponent } from 'src/app/componentes/mes-ano-datepicker/mes-ano-datepicker.component';
 import moment from 'moment';
+import { BuscaPessoaComponent } from 'src/app/componentes/busca-pessoa/busca-pessoa.component';
 
 @Component({
   selector: 'app-cad-pessoa',
@@ -22,6 +22,9 @@ export class CadPessoaComponent implements OnInit {
   @ViewChild(MesAnoDatepickerComponent)
   mesAnoDatePickerComponent!: MesAnoDatepickerComponent;
 
+  @ViewChild(BuscaPessoaComponent)
+  buscaPessoaComponent!: BuscaPessoaComponent;
+
   constructor(private cadPessoaService: CadPessoaService, 
               private matDialog: MatDialog,) {    
   }
@@ -30,8 +33,10 @@ export class CadPessoaComponent implements OnInit {
     this.carregaListaUsuarios();
   }
 
-  habilitarDesabilitarDatepicker(): void {
+  habilitarDesabilitarCheckbox(): void {
     this.mesAnoDatePickerComponent.habilitarDesabilitarComponente();
+    this.buscaPessoaComponent.limparPessoaNome();
+    this.carregaListaUsuarios();
   }
 
   salvarOuEditarPessoa(acao: string, id?: number): void {

@@ -22,4 +22,8 @@ export class BuscaPessoaComponent implements OnInit {
   buscarPessoaNome(nome: string): void {
     this.buscarPessoaNomeEmitter.emit(nome);
   }
+
+  limparPessoaNome(): void {
+    this.nome = '';
+  }
 }

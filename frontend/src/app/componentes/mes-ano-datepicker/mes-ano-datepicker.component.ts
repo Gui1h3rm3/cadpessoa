@@ -61,6 +61,7 @@ export class MesAnoDatepickerComponent implements AfterViewInit {
     if(this.desabilitarInput) {
       this.date.enable();
     } else {
+      this.date.setValue(null);
       this.date.disable();
     }
   }
