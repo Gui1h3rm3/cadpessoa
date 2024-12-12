@@ -1,0 +1,6 @@
+<div *ngIf="mensagensService.getMensagens().length">
+    <h3>Mensagem:</h3>
+    <div *ngFor="let mensagem of mensagensService.getMensagens()">
+        <p>{{ mensagem }}</p>
+    </div>
+</div>

@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MesAnoDatepickerComponent } from './componentes/mes-ano-datepicker/mes-ano-datepicker.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MensagensComponent } from './componentes/mensagens/mensagens.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     CadPessoaComponent,
     SaveEditComponent,
     PessoaFormComponent,
-    BuscaPessoaComponent
+    BuscaPessoaComponent,
+    MensagensComponent
   ],
   imports: [
     BrowserModule,

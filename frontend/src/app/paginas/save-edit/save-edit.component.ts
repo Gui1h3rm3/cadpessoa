@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Erro } from 'src/app/interfaces/erro';
 import { Pessoa } from 'src/app/interfaces/pessoa';
 import { CadPessoaService } from 'src/app/servicos/cad-pessoa/cad-pessoa.service';
+import { MensagensService } from 'src/app/servicos/mensagens/mensagens.service';
 
 @Component({
   selector: 'app-save-edit',
@@ -11,10 +12,12 @@ import { CadPessoaService } from 'src/app/servicos/cad-pessoa/cad-pessoa.service
 })
 export class SaveEditComponent {
 
+  private SALVAR = 'SAVE';
+
   acao: string
   id?: number
 
-  constructor(private router: Router,
+  constructor(private mensagensService: MensagensService,
               private cadPessoaService: CadPessoaService, 
               private matDialog: MatDialogRef<SaveEditComponent>, 
               @Inject(MAT_DIALOG_DATA) 
@@ -24,10 +27,16 @@ export class SaveEditComponent {
   }
 
   salvarPessoaReceiver(pessoa: Pessoa): void {
-    this.cadPessoaService.salvarPessoa(pessoa).subscribe(response => {
-      this.closeDialogReceiver()
+    this.cadPessoaService.salvarPessoa(pessoa).subscribe(() => {      
+      const mensagem: string = this.acao === this.SALVAR ? 'Pessoa cadastrada com sucesso!' : 'Pessoa alterada com sucesso!';
+      this.mensagensService.add(mensagem);
+      this.closeDialogReceiver();
     }, error => {
-      console.log('Erro:', error)
+      const erro: Erro = new Erro(error);
+      const mensagem: string = this.acao === this.SALVAR 
+      ? `Ocorreu um erro ao cadastrar a pessoa: ${erro.getMessage()} - caminho: ${erro.getPath()} - código: ${erro.getStatusNumber()} - tipo: ${erro.getStatus()}`
+      : `Ocorreu um erro ao alterar a pessoa: ${erro.getMessage()} - caminho: ${erro.getPath()} - código: ${erro.getStatusNumber()} - tipo: ${erro.getStatus()}`;
+      this.mensagensService.add(mensagem);
     })
   }
 

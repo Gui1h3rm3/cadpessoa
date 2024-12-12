@@ -45,6 +45,7 @@ public class ApplicationExceptionHandler {
 		Map<String, Object> errors = new HashMap<>();
 		errors.put("timestamp", Instant.now());
 		errors.put("status", HttpStatus.BAD_REQUEST);
+		errors.put("statusNumber", HttpStatus.BAD_REQUEST.value());
 		errors.put("message", e.getMessage());
 		errors.put("path", request.getRequestURI());
 		

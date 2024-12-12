@@ -40,14 +40,14 @@ public class PessoaService {
 		Optional<Pessoa> optPessoa = this.pessoaRepository.findById(id);
 		
 		if(optPessoa.isEmpty()) {
-			throw new CadPessoaUserException("Pessoa não encontrada!");									
+			throw new CadPessoaUserException("Pessoa não encontrada!");
 		}
 		
 		return optPessoa.get().toDados();
 	}
 	
 	public Long save(Long id, String nome, String telefone, LocalDate nascimento, String email) throws CadPessoaUserException {
-		
+
 		Pessoa pessoa;
 		
 		if(id == null) {
@@ -57,6 +57,7 @@ public class PessoaService {
 		}
 		
 		return pessoa.getId();
+
 	}
 	
 	public Boolean remover(Long id) {
