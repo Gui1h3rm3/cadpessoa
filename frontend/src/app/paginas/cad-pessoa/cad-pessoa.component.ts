@@ -83,7 +83,7 @@ export class CadPessoaComponent implements OnInit {
     const content = resposta.content
     content.map(item => [
       // formatando saída para formato pt-BR apenas com data sem hora
-      item.nascimento = new Date(item.nascimento).toLocaleString('pt-BR', {year: 'numeric', month: '2-digit', day: '2-digit'})
+      item.nascimento = new Date(item.nascimento + 'T00:00:00').toLocaleDateString('pt-BR', {year: 'numeric', month: '2-digit', day: '2-digit'})
     ])
 
     this.pessoas = content.map(item => {
