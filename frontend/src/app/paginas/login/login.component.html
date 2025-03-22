@@ -1,24 +1,35 @@
-<h2>Login</h2>
-<form (ngSubmit)="submit()" [formGroup]="loginForm" #form="ngForm">
-    <div class="form-group">
-        <label for="usuario">Usuário:</label>
-        <input type="text"
-                placeholder="insira o usuário"
-                formControlName="username"
-                required>
-        <div *ngIf="username?.invalid && form.submitted">
-            <p>Nome de usuário é obrigatório!</p>
+<div class="container" style="margin-top: 30vh; transform: translateY(-30%); margin-right: 5vh; transform: translateX(-5%);">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <form (ngSubmit)="submit()" [formGroup]="loginForm" #form="ngForm" class="border rounded login-background">
+                
+                <div class="form-group row m-3">
+                    <label for="usuario" class="text-label col-md-3 col-form-label text-md-end fs-6">Usuário:</label>
+                    <div class="col-md-9">
+                        <input type="text" formControlName="username" required class="form-control">
+                        <div *ngIf="username?.invalid && form.submitted">
+                            <p class="text-danger fs-6 m-2" >Nome de usuário é obrigatório!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row m-3">
+                    <label for="senha" class="col-md-3 col-form-label text-md-end fs-6">Senha:</label>
+                    <div class="col-md-9">
+                        <input type="password" formControlName="password" required class="form-control">
+                        <div *ngIf="password?.invalid && form.submitted">
+                            <p class="text-danger fs-6 m-2">Senha é obrigatória!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row justify-content-end m-3">
+                    <div class="col-9 text-center d-grid">
+                        <input type="submit" value="Login" class="btn btn-primary button-background">
+                    </div>
+                </div>
+
+            </form>
         </div>
     </div>
-    <div class="form-group">
-        <label for="senha">Senha:</label>
-        <input type="text"
-                placeholder="insira a senha"
-                formControlName="password"
-                required>
-        <div *ngIf="password?.invalid && form.submitted">
-            <p>Senha é obrigatória!</p>
-        </div>
-    </div>
-    <input type="submit" value="Login">
-</form>
+</div>
