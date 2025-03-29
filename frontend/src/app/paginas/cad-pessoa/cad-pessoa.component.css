@@ -1,3 +1,9 @@
 .no-display {
     display: none;
 }
+
+.button-background {
+    background-color: teal;
+    border: none;
+    outline: none;
+}
