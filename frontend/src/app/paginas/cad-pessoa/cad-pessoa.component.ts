@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Pessoa } from 'src/app/interfaces/pessoa';
 import { CadPessoaService } from 'src/app/servicos/cad-pessoa/cad-pessoa.service';
@@ -8,6 +8,8 @@ import { FormControl } from '@angular/forms';
 import { MesAnoDatepickerComponent } from 'src/app/componentes/mes-ano-datepicker/mes-ano-datepicker.component';
 import moment from 'moment';
 import { BuscaPessoaComponent } from 'src/app/componentes/busca-pessoa/busca-pessoa.component';
+import { AppComponent } from 'src/app/app.component';
+import { EventBusService } from 'src/app/servicos/event-bus/event-bus.service';
 
 @Component({
   selector: 'app-cad-pessoa',
@@ -26,10 +28,13 @@ export class CadPessoaComponent implements OnInit {
   buscaPessoaComponent!: BuscaPessoaComponent;
 
   constructor(private cadPessoaService: CadPessoaService, 
-              private matDialog: MatDialog,) {    
+              private matDialog: MatDialog,
+              private eventBusService: EventBusService) {
+    
   }
 
   ngOnInit(): void {
+    this.eventBusService.eventoDinamico.emit();
     this.carregaListaUsuarios();
   }
 

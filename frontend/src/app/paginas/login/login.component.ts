@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { Authentication } from 'src/app/interfaces/authentication';
 import { Usuario } from 'src/app/interfaces/usuario';
 import { LoginService } from 'src/app/servicos/login/login.service';
@@ -27,7 +28,6 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, 
               private tokenService: TokenService, 
               private router: Router) {
-
   }
 
   submit() {
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('username')
   }
 
-  get password(){
+  get password() {
     return this.loginForm.get('password')
   }
 }
