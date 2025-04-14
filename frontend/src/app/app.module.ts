@@ -18,8 +18,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MesAnoDatepickerComponent } from './componentes/mes-ano-datepicker/mes-ano-datepicker.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MensagensComponent } from './componentes/mensagens/mensagens.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,15 @@ import { MensagensComponent } from './componentes/mensagens/mensagens.component'
     MatInputModule,
     MatNativeDateModule,
     MesAnoDatepickerComponent,
-    MatCheckboxModule
+    MatCheckboxModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar: true,
+      closeButton: true
+    })    
 ],
   providers: [],
   bootstrap: [AppComponent]
