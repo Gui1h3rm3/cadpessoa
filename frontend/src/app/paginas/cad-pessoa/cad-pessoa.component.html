@@ -1,7 +1,7 @@
 <div class="container-fluid" style="margin-top: 15vh;">
     <div id="filtros" class="row m-3">
         <div class="col-md-12 text-center">
-            <fieldset>
+            <fieldset class="fieldset">
                 <legend>
                     <mat-checkbox id="filtros" 
                         type="checkbox" 
@@ -11,21 +11,27 @@
                     <label for="filtros" class="fs-6">Filtros de busca:</label>
                 </legend>
     
-                <!-- Componente que realiza a busca pelo nome da pessoa -->
-                <span class="mx-5">
-                    <app-busca-pessoa
-                        [desabilitarInput]="!filtrosHabilitados"
-                        (buscarPessoaNomeEmitter)="buscarPessoaNomeReceiver($event)">
-                    </app-busca-pessoa>
-                </span>
+                <div class="row justify-content-center">
+                    <!-- Componente que realiza a busca pelo nome da pessoa -->
+                    <div class="col-md-7">
+                        <span class="mx-5">
+                            <app-busca-pessoa
+                                [desabilitarInput]="!filtrosHabilitados"
+                                (buscarPessoaNomeEmitter)="buscarPessoaNomeReceiver($event)">
+                            </app-busca-pessoa>
+                        </span>
+                    </div>
     
-                <!-- Componente para busca através de mês e ano -->
-                <span class="mx-5">
-                    <app-mes-ano-datepicker 
-                        [desabilitarInput]="!filtrosHabilitados"
-                        (buscarPessoaMesEAnoEmitter)="buscarPessoaMesEAnoReceiver($event)">
-                    </app-mes-ano-datepicker>
-                </span>
+                    <!-- Componente para busca através de mês e ano -->
+                    <div class="col-md-4 mt-3">
+                        <span class="mx-5">
+                            <app-mes-ano-datepicker 
+                                [desabilitarInput]="!filtrosHabilitados"
+                                (buscarPessoaMesEAnoEmitter)="buscarPessoaMesEAnoReceiver($event)">
+                            </app-mes-ano-datepicker>
+                        </span>
+                    </div>
+                </div>
             </fieldset>
         </div>
     </div>
