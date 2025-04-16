@@ -56,7 +56,7 @@
                         <td class="align-middle">{{ pessoa.email }}</td>
                         <div class="col-md-2">
                             <td>
-                                <button type="button" class="btn btn-primary mx-1" (click)="salvarOuEditarPessoa('EDIT', pessoa.id)">Editar</button>
+                                <button type="button" class="btn btn-primary mx-1" (click)="salvarOuEditarPessoa(getLabelEditar(), pessoa.id)">Editar</button>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-danger mx-1" (click)="excluirPessoa(pessoa.id ?? 0)">Excluir</button>
@@ -69,7 +69,7 @@
     </div>
     <div id="botoes" class="row my-3">
         <div class="col-md-12 text-center">
-            <button class="mx-5 btn btn-primary button-background" (click)="salvarOuEditarPessoa('SAVE')">
+            <button class="mx-5 btn btn-primary button-background" (click)="salvarOuEditarPessoa(getLabelSalvar())">
                 Novo cadastro
             </button>
             <button class="mx-5 btn btn-primary">

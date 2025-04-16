@@ -8,8 +8,9 @@ import { FormControl } from '@angular/forms';
 import { MesAnoDatepickerComponent } from 'src/app/componentes/mes-ano-datepicker/mes-ano-datepicker.component';
 import moment from 'moment';
 import { BuscaPessoaComponent } from 'src/app/componentes/busca-pessoa/busca-pessoa.component';
-import { AppComponent } from 'src/app/app.component';
 import { EventBusService } from 'src/app/servicos/event-bus/event-bus.service';
+import { AppConstants } from 'src/app/interfaces/constants';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cad-pessoa',
@@ -25,12 +26,21 @@ export class CadPessoaComponent implements OnInit {
   mesAnoDatePickerComponent!: MesAnoDatepickerComponent;
 
   @ViewChild(BuscaPessoaComponent)
-  buscaPessoaComponent!: BuscaPessoaComponent;
+  buscaPessoaComponent!: BuscaPessoaComponent;  
 
   constructor(private cadPessoaService: CadPessoaService, 
               private matDialog: MatDialog,
-              private eventBusService: EventBusService) {
+              private eventBusService: EventBusService,
+              private toastrService: ToastrService) {
     
+  }
+
+  getLabelSalvar(): string {
+    return AppConstants.SALVAR;
+  }
+
+  getLabelEditar(): string {
+    return AppConstants.EDITAR;
   }
 
   ngOnInit(): void {
@@ -59,7 +69,10 @@ export class CadPessoaComponent implements OnInit {
 
   excluirPessoa(id: number): void {
     this.cadPessoaService.excluirPessoa(id).subscribe(() => {
-      this.carregaListaUsuarios()
+      this.carregaListaUsuarios();
+      this.toastrService.success(AppConstants.EXCLUSAO_SUCESSO, AppConstants.SUCESSO);
+    }, error => {
+      this.toastrService.error(AppConstants.EXCLUSAO_ERRO + error.getMessage(), AppConstants.ERRO)
     })
   }
 

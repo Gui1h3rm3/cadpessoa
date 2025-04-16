@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { AppConstants } from 'src/app/interfaces/constants';
 import { Erro } from 'src/app/interfaces/erro';
 import { Pessoa } from 'src/app/interfaces/pessoa';
 import { CadPessoaService } from 'src/app/servicos/cad-pessoa/cad-pessoa.service';
@@ -12,8 +14,6 @@ import { MensagensService } from 'src/app/servicos/mensagens/mensagens.service';
 })
 export class SaveEditComponent {
 
-  private SALVAR = 'SAVE';
-
   acao: string
   id?: number
 
@@ -21,22 +21,23 @@ export class SaveEditComponent {
               private cadPessoaService: CadPessoaService, 
               private matDialog: MatDialogRef<SaveEditComponent>, 
               @Inject(MAT_DIALOG_DATA) 
-              private data: {acao: string, id?: number}) {
+              private data: {acao: string, id?: number},
+              private toastrService: ToastrService) {
     this.acao = this.data.acao
     this.id = this.data.id
   }
 
   salvarPessoaReceiver(pessoa: Pessoa): void {
     this.cadPessoaService.salvarPessoa(pessoa).subscribe(() => {      
-      const mensagem: string = this.acao === this.SALVAR ? 'Pessoa cadastrada com sucesso!' : 'Pessoa alterada com sucesso!';
-      this.mensagensService.add(mensagem);
+      const mensagem: string = this.acao === AppConstants.SALVAR ? AppConstants.INCLUSAO_SUCESSO : AppConstants.ALTERACAO_SUCESSO;
+      this.toastrService.success(mensagem, AppConstants.SUCESSO);
       this.closeDialogReceiver();
     }, error => {
       const erro: Erro = new Erro(error);
-      const mensagem: string = this.acao === this.SALVAR 
+      const mensagem: string = this.acao === AppConstants.SALVAR
       ? `Ocorreu um erro ao cadastrar a pessoa: ${erro.getMessage()} - caminho: ${erro.getPath()} - código: ${erro.getStatusNumber()} - tipo: ${erro.getStatus()}`
       : `Ocorreu um erro ao alterar a pessoa: ${erro.getMessage()} - caminho: ${erro.getPath()} - código: ${erro.getStatusNumber()} - tipo: ${erro.getStatus()}`;
-      this.mensagensService.add(mensagem);
+      this.toastrService.error(mensagem, AppConstants.ERRO);
     })
   }
 

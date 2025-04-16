@@ -1,5 +1,17 @@
-<h3>{{ acao }}</h3>
-<app-pessoa-form [id]="id" 
-    (salvarEmitter)="salvarPessoaReceiver($event)" 
-    (cancelarEmitter)="closeDialogReceiver()">
-</app-pessoa-form>
+<div class="container-fluid">
+    <div class="form-group">
+        <nav class="titulo">
+            <div class="row">
+                <div class="col-md-12 d-flex align-items-center justify-content-center">
+                    <h3 class="mt-3 label">{{ acao }}</h3>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="mt-5">
+        <app-pessoa-form [id]="id" 
+            (salvarEmitter)="salvarPessoaReceiver($event)" 
+            (cancelarEmitter)="closeDialogReceiver()">
+        </app-pessoa-form>
+    </div>
+</div>

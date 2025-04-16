@@ -4,9 +4,10 @@
     <input type="hidden" formControlName="id"/>
 
     <!-- Nome -->
-    <div class="form-group">
-        <label for="nome">Nome:</label>
+    <div class="form-group my-4">
+        <label for="nome" class="form-label">Nome:</label>
         <input type="text" 
+                class="form-control"
                 formControlName="nome"
                 placeholder="Insira um nome" 
                 required/>
@@ -16,17 +17,19 @@
     </div>
 
     <!-- Email -->
-    <div class="form-group">
-        <label for="email">Email:</label>
+    <div class="form-group my-4">
+        <label for="email" class="form-label">Email:</label>
         <input type="email" 
+                class="form-control"
                 formControlName="email" 
                 placeholder="Insira um email"/>
     </div>
 
     <!-- Nascimento -->
-    <div class="form-group">
-        <label for="nascimento">Nascimento:</label>
+    <div class="form-group my-4">
+        <label for="nascimento" class="form-label">Nascimento:</label>
         <input type="date" 
+                class="form-control"
                 formControlName="nascimento" 
                 placeholder="Insira uma data de nascimento" 
                 required/>
@@ -36,15 +39,18 @@
     </div>
 
     <!-- Telefone -->
-    <div class="form-group">
-        <label for="telefone">Telefone:</label>
+    <div class="form-group my-4">
+        <label for="telefone" class="form-label">Telefone:</label>
         <input type="tel" 
+                class="form-control"
                 formControlName="telefone" 
                 placeholder="Insira um número de telefone"/>
     </div>
 
-    <div class="form-group">
-        <input type="submit" value="Salvar"/>
-        <input type="button" value="Cancelar" (click)="cancelar()"/>
+    <div class="form-group my-4">
+        <div class="col-md-12 text-center">
+            <button class="mx-5 btn btn-danger" (click)="cancelar()">Cancelar</button>
+            <button class="mx-5 btn btn-primary button-background">Salvar</button>
+        </div>
     </div>
 </form>
