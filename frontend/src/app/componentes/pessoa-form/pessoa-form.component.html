@@ -5,20 +5,20 @@
 
     <!-- Nome -->
     <div class="form-group my-4">
-        <label for="nome" class="form-label">Nome:</label>
+        <label for="nome" class="form-label fs-6">Nome:</label>
         <input type="text" 
                 class="form-control"
                 formControlName="nome"
                 placeholder="Insira um nome" 
                 required/>
         <div *ngIf="nome?.invalid && form.submitted">
-            <p>o campo nome é obrigatório!</p>
+            <p class="text-danger fs-6 m-2">o campo nome é obrigatório!</p>
         </div>
     </div>
 
     <!-- Email -->
     <div class="form-group my-4">
-        <label for="email" class="form-label">Email:</label>
+        <label for="email" class="form-label fs-6">Email:</label>
         <input type="email" 
                 class="form-control"
                 formControlName="email" 
@@ -27,20 +27,20 @@
 
     <!-- Nascimento -->
     <div class="form-group my-4">
-        <label for="nascimento" class="form-label">Nascimento:</label>
+        <label for="nascimento" class="form-label fs-6">Nascimento:</label>
         <input type="date" 
                 class="form-control"
                 formControlName="nascimento" 
                 placeholder="Insira uma data de nascimento" 
                 required/>
         <div *ngIf="nascimento?.invalid && form.submitted">
-            <p>O campo nascimento é obrigatório!</p>
+            <p class="text-danger fs-6 m-2">O campo nascimento é obrigatório!</p>
         </div>
     </div>
 
     <!-- Telefone -->
     <div class="form-group my-4">
-        <label for="telefone" class="form-label">Telefone:</label>
+        <label for="telefone" class="form-label fs-6">Telefone:</label>
         <input type="tel" 
                 class="form-control"
                 formControlName="telefone" 
