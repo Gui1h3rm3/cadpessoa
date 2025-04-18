@@ -15,7 +15,6 @@
 	<name>cadpessoa</name>
 	<description>Cadastro de pessoas</description>
 	<properties>
-		<!--<java.version>17</java.version>-->
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
