@@ -62,7 +62,7 @@ export class CadPessoaComponent implements OnInit {
       },
       width: '400px',
       height: '600px'
-    }).afterClosed().subscribe(() => {
+    }).afterClosed().subscribe((result) => {
       this.carregaListaUsuarios()
     })
   }
