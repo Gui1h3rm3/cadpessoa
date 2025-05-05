@@ -21,6 +21,7 @@ import { MesAnoDatepickerComponent } from './componentes/mes-ano-datepicker/mes-
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MensagensComponent } from './componentes/mensagens/mensagens.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ExcluirComponent } from './paginas/excluir/excluir.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ToastrModule } from 'ngx-toastr';
     SaveEditComponent,
     PessoaFormComponent,
     BuscaPessoaComponent,
-    MensagensComponent
+    MensagensComponent,
+    ExcluirComponent
   ],
   imports: [
     BrowserModule,

@@ -60,7 +60,7 @@ public class PessoaService {
 
 	}
 	
-	public Boolean remover(Long id) {
+	public Boolean remover(Long id) throws CadPessoaUserException {
 		this.pessoaRepository.deleteById(id);
 		return Boolean.TRUE;
 	}

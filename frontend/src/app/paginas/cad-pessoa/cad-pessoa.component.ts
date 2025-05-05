@@ -11,6 +11,7 @@ import { BuscaPessoaComponent } from 'src/app/componentes/busca-pessoa/busca-pes
 import { EventBusService } from 'src/app/servicos/event-bus/event-bus.service';
 import { AppConstants } from 'src/app/interfaces/constants';
 import { ToastrService } from 'ngx-toastr';
+import { ExcluirComponent } from '../excluir/excluir.component';
 
 @Component({
   selector: 'app-cad-pessoa',
@@ -67,12 +68,15 @@ export class CadPessoaComponent implements OnInit {
     })
   }
 
-  excluirPessoa(id: number): void {
-    this.cadPessoaService.excluirPessoa(id).subscribe(() => {
-      this.carregaListaUsuarios();
-      this.toastrService.success(AppConstants.EXCLUSAO_SUCESSO, AppConstants.SUCESSO);
-    }, error => {
-      this.toastrService.error(AppConstants.EXCLUSAO_ERRO + error.getMessage(), AppConstants.ERRO)
+  excluirPessoa(pessoa: Pessoa): void {
+    this.matDialog.open(ExcluirComponent, {
+      data: {
+        pessoa: pessoa
+      },
+      width: '600px',
+      height: '250px'
+    }).afterClosed().subscribe(() => {
+      this.carregaListaUsuarios()
     })
   }
 

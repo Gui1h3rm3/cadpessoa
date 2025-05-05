@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="form-group">
+        <nav class="titulo">
+            <div class="row">
+                <div class="col-md-12 d-flex align-items-center justify-content-center">
+                    <h3 class="mt-4 label fs-5">Deseja realmente excluir o registro?</h3>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="text-center mt-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td class="fs-6">Nome</td>
+                    <td class="fs-6">Telefone</td>
+                    <td class="fs-6">Nascimento</td>
+                    <td class="fs-6">Email</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="align-middle">{{ pessoa.nome }}</td>
+                    <td class="align-middle">{{ pessoa.telefone }}</td>
+                    <td class="align-middle">{{ pessoa.nascimento }}</td>
+                    <td class="align-middle">{{ pessoa.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row form-group mt-4">
+        <div class="col-md-12 text-center">
+            <button mat-button mat-dialog-close class="mx-5 btn btn-secondary">Cancelar</button>
+            <button class="mx-5 btn btn-danger button-background" (click)="excluir(pessoa.id!)">Excluir</button>
+        </div>
+    </div>    
+</div>
