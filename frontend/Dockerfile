@@ -6,13 +6,14 @@ WORKDIR /app
 # copia o package.json para o workspace (/app) e executa o comando para instalar as dependencias
 COPY package.json /app
 #RUN npm install
-RUN npm install
+#RUN npm install
+RUN npm install -g @angular/cli && npm install
 
 # depois da instalação das dependências, realiza a copia de todos os arquivos do projeto para a imagem docker
 COPY . .
 
 # executa o comando de build de producao
-RUN npm run build
+RUN ng build --configuration production
 
 #============================================================================================================
 # Servidor Web
