@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Authentication } from 'src/app/interfaces/authentication';
 import { LoginService } from 'src/app/servicos/login/login.service';
 import { TokenService } from 'src/app/servicos/token/token.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -23,9 +22,6 @@ export class LoginComponent implements OnInit {
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
     })
-
-    console.log('produção', environment.production)
-    console.log('baseApiUrl', environment.baseApiUrl)
   }
 
   constructor(private loginService: LoginService, 
