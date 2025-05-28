@@ -32,7 +32,12 @@ services:
       - DB_PORT=5432
       - DB_NAME=cadpessoa
       - DB_USER=postgres
-      - DB_PASSWORD=1A222308011   
+      - DB_PASSWORD=1A222308011
+      - SPRING_SECURITY_CSRF_DISABLED=true
+      - CORS_ALLOWED_ORIGINS=http://frontend,http://localhost:8081
+      - CORS_ALLOWED_METHODS=GET,POST,PUT,DELETE,OPTIONS
+      - CORS_ALLOWED_HEADERS=*
+      - CORS_ALLOW_CREDENTIALS=true         
     restart: unless-stopped
     depends_on:
       db:
@@ -45,7 +50,7 @@ services:
     image: cadpessoa-frontend
     container_name: cadpessoa-frontend_cmp
     ports:
-      - "8082:80"
+      - "8081:80"
     restart: unless-stopped
     networks:
       - cadpessoa-network_cmp
