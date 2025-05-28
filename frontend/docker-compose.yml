@@ -1,8 +1,0 @@
-services:
-  cadpessoa-frontend:
-    image: cadpessoa-frontend
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    ports:
-      - 8081:80

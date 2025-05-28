@@ -13,7 +13,8 @@ RUN npm install -g @angular/cli && npm install
 COPY . .
 
 # executa o comando de build de producao
-RUN ng build --configuration production
+#RUN ng build --configuration production
+RUN ng build --configuration docker
 
 #============================================================================================================
 # Servidor Web

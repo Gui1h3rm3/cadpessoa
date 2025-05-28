@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  db: 
+    image: postgres
+    container_name: postgres_cmp
+    volumes:
+      - postgres_vol_cmp:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1A222308011
+      POSTGRES_DB: cadpessoa
+    restart: unless-stopped
+    networks:
+      - cadpessoa-network_cmp
+    healthcheck:  # Adicionado para verificar se o DB está pronto
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5      
+    
+  
+  backend:
+    image: cadpessoa-backend
+    container_name: cadpessoa-backend_cmp
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=cadpessoa
+      - DB_USER=postgres
+      - DB_PASSWORD=1A222308011   
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy  # Só inicia após o DB estar pronto
+    networks:
+      - cadpessoa-network_cmp
+
+  
+  frontend:
+    image: cadpessoa-frontend
+    container_name: cadpessoa-frontend_cmp
+    ports:
+      - "8082:80"
+    restart: unless-stopped
+    networks:
+      - cadpessoa-network_cmp
+    depends_on:
+      - backend
+
+volumes:
+  postgres_vol_cmp:
+
+networks:
+  cadpessoa-network_cmp:
